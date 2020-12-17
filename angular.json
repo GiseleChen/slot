@@ -1,0 +1,411 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "fish-game": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "root": "projects/fish-game",
+      "sourceRoot": "projects/fish-game/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "es6-promise-polyfill",
+              "url"
+            ],
+            "outputPath": "dist/fish-game",
+            "index": "projects/fish-game/src/index.html",
+            "main": "projects/fish-game/src/main.ts",
+            "polyfills": "projects/fish-game/src/polyfills.ts",
+            "tsConfig": "projects/fish-game/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/fish-game/src/favicon.ico",
+              "projects/fish-game/src/assets"
+            ],
+            "styles": [
+              "projects/fish-game/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/fish-game/src/environments/environment.ts",
+                  "with": "projects/fish-game/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "fish-game:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fish-game:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "fish-game:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/fish-game/src/test.ts",
+            "polyfills": "projects/fish-game/src/polyfills.ts",
+            "tsConfig": "projects/fish-game/tsconfig.spec.json",
+            "karmaConfig": "projects/fish-game/karma.conf.js",
+            "assets": [
+              "projects/fish-game/src/favicon.ico",
+              "projects/fish-game/src/assets"
+            ],
+            "styles": [
+              "projects/fish-game/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/fish-game/**/*.ts",
+              "projects/fish-game/**/*.html"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/fish-game/e2e/protractor.conf.js",
+            "devServerTarget": "fish-game:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "fish-game:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "show-room": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "root": "projects/show-room",
+      "sourceRoot": "projects/show-room/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/show-room",
+            "index": "projects/show-room/src/index.html",
+            "main": "projects/show-room/src/main.ts",
+            "polyfills": "projects/show-room/src/polyfills.ts",
+            "tsConfig": "projects/show-room/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/show-room/src/favicon.ico",
+              "projects/show-room/src/assets",
+              {
+                "glob": "**/*",
+                "input": "projects/fish-game/src/assets/",
+                "output": "/assets/fish-game/"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/slot-game/src/assets/",
+                "output": "/assets/slot-game/"
+              }
+            ],
+            "styles": [
+              "projects/show-room/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/show-room/src/environments/environment.ts",
+                  "with": "projects/show-room/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "show-room:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "show-room:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "show-room:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/show-room/src/test.ts",
+            "polyfills": "projects/show-room/src/polyfills.ts",
+            "tsConfig": "projects/show-room/tsconfig.spec.json",
+            "karmaConfig": "projects/show-room/karma.conf.js",
+            "assets": [
+              "projects/show-room/src/favicon.ico",
+              "projects/show-room/src/assets"
+            ],
+            "styles": [
+              "projects/show-room/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/show-room/**/*.ts",
+              "projects/show-room/**/*.html"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/show-room/e2e/protractor.conf.js",
+            "devServerTarget": "show-room:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "show-room:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "lib-animation": {
+      "projectType": "library",
+      "root": "projects/lib-animation",
+      "sourceRoot": "projects/lib-animation/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/lib-animation/tsconfig.lib.json",
+            "project": "projects/lib-animation/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lib-animation/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-animation/src/test.ts",
+            "tsConfig": "projects/lib-animation/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-animation/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/lib-animation/**/*.ts",
+              "projects/lib-animation/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "slot-game": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "root": "projects/slot-game",
+      "sourceRoot": "projects/slot-game/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "es6-promise-polyfill",
+              "url"
+            ],
+            "outputPath": "dist/slot-game",
+            "index": "projects/slot-game/src/index.html",
+            "main": "projects/slot-game/src/main.ts",
+            "polyfills": "projects/slot-game/src/polyfills.ts",
+            "tsConfig": "projects/slot-game/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/slot-game/src/favicon.ico",
+              "projects/slot-game/src/assets"
+            ],
+            "styles": [
+              "projects/slot-game/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/slot-game/src/environments/environment.ts",
+                  "with": "projects/slot-game/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "slot-game:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "slot-game:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "slot-game:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/slot-game/src/test.ts",
+            "polyfills": "projects/slot-game/src/polyfills.ts",
+            "tsConfig": "projects/slot-game/tsconfig.spec.json",
+            "karmaConfig": "projects/slot-game/karma.conf.js",
+            "assets": [
+              "projects/slot-game/src/favicon.ico",
+              "projects/slot-game/src/assets"
+            ],
+            "styles": [
+              "projects/slot-game/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/slot-game/**/*.ts",
+              "projects/slot-game/**/*.html"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/slot-game/e2e/protractor.conf.js",
+            "devServerTarget": "slot-game:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "slot-game:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "fish-game"
+}
