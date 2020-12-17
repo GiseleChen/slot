@@ -1,0 +1,20 @@
+{
+  "frames": {
+    "oImgBottom": {
+        "frame": {"x":0,"y":0,"w":765,"h":71},
+        "rotated": false,
+        "trimmed": false,
+        "spriteSourceSize": {"x":0,"y":0,"w":765,"h":71},
+        "sourceSize": {"w":765,"h":71}
+    }
+  },
+  "meta": {
+      "app": "fish",
+      "version": "1.0",
+      "image": "bottom.png",
+      "format": "fish",
+      "size": {"w":765 ,"h":122},
+      "scale": "1",
+      "smartupdate": "$"
+  }
+}
