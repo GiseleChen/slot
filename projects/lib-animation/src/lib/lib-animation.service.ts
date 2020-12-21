@@ -14,6 +14,8 @@ import { IAnimationSprite } from './interface/IAnimationSprite';
 import { IAnimationContainer } from './interface/IAnimationContainer';
 import { IAnimationBlurFilter } from './interface/IAnimationBlurFilter';
 import { IAnimationGraphics } from './interface/IAnimationGraphics';
+import { IAnimationPolygon } from './interface/IAnimationPolygon';
+import { IAnimationTexture } from './interface/IAnimationTexture';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +52,10 @@ export class LibAnimationService implements IAnimationService {
     return PIXI.Sprite.from(texture);
   }
 
+  factoryTexture(img: string): IAnimationTexture {
+    return PIXI.Texture.from(img);
+  }
+
   factoryContainer(): IAnimationContainer {
     return new PIXI.Container();
   }
@@ -60,6 +66,10 @@ export class LibAnimationService implements IAnimationService {
 
   factoryGraphics(): IAnimationGraphics {
     return new PIXI.Graphics();
+  }
+
+  factoryPolygon(): IAnimationPolygon {
+    return new PIXI.Polygon();
   }
 
   private createApp(option?: IAnimationCreateOption): PIXI.Application {

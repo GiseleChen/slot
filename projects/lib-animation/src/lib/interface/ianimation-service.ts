@@ -5,6 +5,8 @@ import { IAnimationSprite } from './IAnimationSprite';
 import { IAnimationContainer } from './IAnimationContainer';
 import { IAnimationGraphics } from './IAnimationGraphics';
 import { IAnimationBlurFilter } from './IAnimationBlurFilter';
+import { IAnimationPolygon } from './IAnimationPolygon';
+import { IAnimationTexture } from './IAnimationTexture';
 
 export interface IAnimationAppSoursePathList {
   name: string;
@@ -15,6 +17,7 @@ export interface IAnimationApp{
   stage: PIXI.Container;
   resources: PIXI.IResourceDictionary;
   screen: PIXI.Rectangle;
+  ticker: PIXI.Ticker;
 
   loader(soursePathList: IAnimationAppSoursePathList[]): Observable<number>;
 }
@@ -31,4 +34,6 @@ export interface IAnimationService {
   factoryContainer(): IAnimationContainer;
   factoryBlurFilter(): IAnimationBlurFilter;
   factoryGraphics(): IAnimationGraphics;
+  factoryPolygon(): IAnimationPolygon;
+  factoryTexture(img: string): IAnimationTexture;
 }
