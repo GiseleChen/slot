@@ -2,19 +2,21 @@ import { Observable, Subscriber } from 'rxjs';
 import { IAnimationApp, IAnimationAppSoursePathList } from '../interface/ianimation-service';
 import * as PIXI from 'pixi.js';
 
-export class AnimationApp implements IAnimationApp{
+export class AnimationApp implements IAnimationApp {
   stage: PIXI.Container;
   resources: PIXI.IResourceDictionary;
   screen: PIXI.Rectangle;
+  ticker: PIXI.Ticker;
 
-  constructor(private pixi: PIXI.Application){
-    this.stage = this.pixi.stage
-    this.screen =  this.pixi.screen
+  constructor(private pixi: PIXI.Application) {
+    this.stage = this.pixi.stage;
+    this.screen = this.pixi.screen;
+    this.ticker = this.pixi.ticker;
   }
 
   loader(soursePathList: IAnimationAppSoursePathList[]): Observable<number> {
-    return new Observable(sub=>{
-      soursePathList.forEach(sourse=>this.pixi.loader.add(sourse.name, sourse.src) );
+    return new Observable(sub => {
+      soursePathList.forEach(sourse => this.pixi.loader.add(sourse.name, sourse.src));
       this.bindLoaderEvent(sub); // called once when the queued resources all load.
       this.pixi.loader.load();
     });
